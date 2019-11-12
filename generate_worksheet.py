@@ -61,11 +61,11 @@ def main(outfile, what, maxn, count):
     '''Generate a worksheet.'''
 
     fmt, func = {
-        '+': ('{0}+{1}&={2}\\tab&&{3}', generate_addition_problems),
-        '-': ('{0}-{1}&={2}\\tab&&{3}', generate_subtraction_problems),
-        '*': ('{0}\\times{1}&={2}\\tab&&{3}', generate_multiplication_problems),
-        '//': ('{0}\\div{1}&={2}\\tab&&{3}', generate_integer_division_problems),
-        '/': ('{0}\\div{1}&={2}rem{3}\\tab&&{4}' ,generate_division_problems),
+        'add': ('{0}+{1}&={2}\\tab&&{3}', generate_addition_problems),
+        'sub': ('{0}-{1}&={2}\\tab&&{3}', generate_subtraction_problems),
+        'mul': ('{0}\\times{1}&={2}\\tab&&{3}', generate_multiplication_problems),
+        'idiv': ('{0}\\div{1}&={2}\\tab&&{3}', generate_integer_division_problems),
+        'rdiv': ('{0}\\div{1}&={2}rem{3}\\tab&&{4}' ,generate_division_problems),
     }[what]
 
     with open(outfile, 'w') as fout:
@@ -96,7 +96,7 @@ def main(outfile, what, maxn, count):
             fout.write('\\begin{alignat*}{3}\n')
             fmts = []
             for i, knowns in enumerate(column):
-                blanks = {_ for _ in random.sample(range(len(knowns)), len(knowns) - 2)}
+                blanks = {_ for _ in random.sample(range(len(knowns)), 1)}
                 fmts.append(
                     fmt.format(*(
                         [
